@@ -1,0 +1,16 @@
+  - name: Create a "Private Network" config
+    template: src=priv.net.j2 dest=/var/lib/one/priv.net 
+    become_user: oneadmin
+    register: needs_population
+
+  - name: Populate network and images
+    args:
+      executable: /bin/bash
+    shell: |
+      cd
+      onehost create localhost -i kvm -v kvm -n dummy
+      onevnet create priv.net
+      oneimage create --name "CentOS-7-one-4.8" --path http://marketplace.c12g.com/appliance/53e7bf928fb81d6a69000002/download --driver qcow2 -d default 
+      onetemplate create --name "CentOS-7" --cpu 1 --vcpu 1 --memory 512 --arch x86_64 --disk "CentOS-7-one-4.8" --nic "Private Network" --vnc --ssh --net_context
+    become_user: oneadmin
+    when: needs_population|changed

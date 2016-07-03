@@ -1,0 +1,20 @@
+  - name: Install Sunstone packages
+    yum: name="{{ item }}" state=present
+    with_items:
+      - opennebula-server
+      - opennebula-sunstone
+    register: install_gems
+
+  - name: Run /usr/share/one/install_gems
+    shell: yes | /usr/share/one/install_gems
+    when: install_gems|changed
+
+  - name: Reconfigure /etc/one/sunstone-server.conf
+    lineinfile: 'dest=/etc/one/sunstone-server.conf regexp="^:host: 127.0.0.1" line=":host: 0.0.0.0"'
+
+  - name: Enable and restart Sunstone services
+    service: name="{{ item }}" state=restarted enabled=true
+    with_items:
+      - opennebula
+      - opennebula-sunstone
+    when: install_gems|changed

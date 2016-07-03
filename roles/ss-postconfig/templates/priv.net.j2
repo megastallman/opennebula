@@ -1,0 +1,19 @@
+# Confgiuration attributes (dummy driver)
+NAME        = "Private Network"
+DESCRIPTION = "A private network for VM inter-communication"
+
+BRIDGE = "br0"
+
+# Context attributes
+NETWORK_ADDRESS = "{{ br0_net_addr }}"
+NETWORK_MASK    = "{{ br0_netmask }}"
+DNS             = "{{ br0_dns }}"
+GATEWAY         = "{{ br0_addr }}"
+
+#Address Ranges, only these addresses will be assigned to the VMs
+AR = [
+    TYPE = "IP4",
+    IP   = "{{ br0_begin }}",
+    SIZE = "{{ br0_quantaty }}"
+]
+

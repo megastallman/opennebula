@@ -1,0 +1,8 @@
+  - name: Template a br0 config
+    template: src=ifcfg-br0.j2 dest=/etc/sysconfig/network-scripts/ifcfg-br0
+
+  - name: Add MASQUARADE
+    iptables: table=nat chain=POSTROUTING  comment="Deliver internet to VMs" out_interface={{ masquerade_ext_if }} jump=MASQUERADE
+
+  - name: Restart network
+    service: name=network state=restarted

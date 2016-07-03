@@ -1,0 +1,2 @@
+  - name: Edit oneadmin's ssh-config
+    template: src=ssh-config.j2 dest=/var/lib/one/.ssh/config mode=600 owner=oneadmin group=oneadmin

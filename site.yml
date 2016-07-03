@@ -1,0 +1,24 @@
+---
+- hosts: nebula
+  become: yes
+  user: centos
+  vars:
+    openvpn_port: 1194
+    br0_addr: "10.0.0.1"
+    br0_net_addr: "10.0.0.0"
+    br0_dns: "8.8.8.8"
+    br0_netmask: "255.255.0.0"
+    br0_begin: "10.0.0.10"
+    br0_quantaty: "64000"
+    masquerade_ext_if: "eth0"
+    clients:
+    - ovpnuser1
+    - ovpnuser2
+  roles:
+    - role: preconfig
+    - role: ss-pkglist
+    - role: ss-ssh
+    - role: openvpn #https://github.com/megastallman/ansible-role-openvpn.git
+    - role: ss-postconfig
+    - role: hv-pkglist
+    - role: network

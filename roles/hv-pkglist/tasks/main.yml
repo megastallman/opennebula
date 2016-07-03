@@ -1,0 +1,5 @@
+  - name: Install Hypervisor package
+    yum: name=opennebula-node-kvm
+
+  - name: Enable and restart Hypervisor services
+    service: name=libvirtd state=restarted enabled=yes

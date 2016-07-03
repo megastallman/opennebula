@@ -1,0 +1,17 @@
+- name: Install libselinux-python
+  yum: name=libselinux-python
+
+- name: Disable Selinux
+  selinux: state=disabled
+
+- name: Install redhat-lsb
+  yum: name=redhat-lsb
+
+- name: Install Epel-release
+  yum: name=epel-release
+
+- name: Total upgrade
+  yum: name=* state=latest
+
+- name: Add Opennebula repo
+  template: src=opennebula.repo.j2 dest=/etc/yum.repos.d/opennebula.repo
