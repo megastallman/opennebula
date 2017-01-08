@@ -1,4 +1,4 @@
-A simple, yet ready to use Opennebula ansible playbook.
+#A simple, yet ready to use Opennebula ansible playbook.
 
 Be aware that these playbooks use submodules. Issue
 $ git submodule update --recursive
