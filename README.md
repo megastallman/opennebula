@@ -1,7 +1,9 @@
 #A simple, yet ready to use Opennebula ansible playbook.
 
 Be aware that these playbooks use submodules. Issue
+```
 $ git submodule update --recursive
+```
 when needed
 
  - Requirements: A Centos-7 machine with a passwordless sudo user "centos", authenticating with keys.
