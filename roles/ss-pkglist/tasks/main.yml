@@ -1,3 +1,5 @@
+  - name: Install rubygem-bundler  
+    yum: name=rubygem-bundler
   - name: Install Sunstone packages
     yum: name="{{ item }}" state=present
     with_items:

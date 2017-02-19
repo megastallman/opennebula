@@ -3,6 +3,7 @@
   become: yes
   user: centos
   vars:
+    one_version: "5.2"
     openvpn_port: 1194
     br0_addr: "10.0.0.1"
     br0_net_addr: "10.0.0.0"
